@@ -7,9 +7,12 @@ export const LocationTypeChoices = async () => {
     document.addEventListener("change", handleLocationChange)
     
     let choicesHTML = "<h2>Which type of area do you live in?</h2>"
-    for (const location of locations) {
-        choicesHTML += `<input type='radio' name='location' value='${location.id}' /> ${location.label}`
-    }
+    const locationsArray = locations.map(
+        (location) => {
+            return `<input type='radio' name='location' value='${location.id}' /> ${location.label}`
+        }
+    )
+    choicesHTML += locationsArray.join("")
     return choicesHTML
 }
 
@@ -19,3 +22,7 @@ const handleLocationChange = (changeEvent) => {
         setSocioLocationId(convertedToInteger)
     } 
 }
+
+// for (const location of locations) {
+//     choicesHTML += `<input type='radio' name='location' value='${location.id}' /> ${location.label}`
+// }
